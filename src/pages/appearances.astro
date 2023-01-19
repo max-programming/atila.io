@@ -1,0 +1,53 @@
+---
+import Layout from "../layouts/layout.astro";
+import PageHeader from "../components/page-header.astro";
+import PageIntro from "../components/page-intro.astro";
+import AppearanceCard from "../components/card-appearance.astro";
+import { fetchAppearances } from "../lib/db.server";
+
+const appearances = await fetchAppearances();
+
+const y2021 = [];
+const y2022 = [];
+
+for (const appearance of appearances) {
+  if (appearance.published) {
+    if (!!appearance.date && appearance.date.includes("2021")) {
+      y2021.push(appearance);
+    }
+    if (!!appearance.date && appearance.date.includes("2022")) {
+      y2022.push(appearance);
+    }
+  }
+}
+
+const metas = {
+  title: "Appearances :: Atila",
+};
+---
+
+<Layout metas={metas}>
+  <header class="w-11/12 mx-auto max-w-7xl">
+    <PageHeader title="Past & Future Appearances" />
+    <PageIntro>
+      Starting off as a self-taught developer made me value the community a lot.
+      Sharing knowledge in conferences and meeting different people with similar
+      interests is one of my biggest passions in this carreers. Therefore, I
+      participate in conferences, podcasts, workshops, and meetups as often as I
+      can.
+    </PageIntro>
+  </header>
+
+  <section class="mt-20 mb-40 max-w-[90rem] mx-auto">
+    <h2 class="text-4xl w-11/12 mx-auto max-w-7xl">2022</h2>
+    <ul class="grid gap-16 mt-16 md:grid-cols-2 2xl:grid-cols-3 sm:gap-28 px-4">
+      {y2022.map((appearance) => <AppearanceCard {...appearance} />)}
+    </ul>
+  </section>
+  <section class="mb-32 max-w-[90rem] mx-auto">
+    <h2 class="text-4xl w-11/12 mx-auto max-w-7xl">2021</h2>
+    <ul class="grid gap-16 mt-16 sm:grid-cols-2 2xl:grid-cols-3 sm:gap-28 px-4">
+      {y2021.map((appearance) => <AppearanceCard {...appearance} />)}
+    </ul>
+  </section>
+</Layout>

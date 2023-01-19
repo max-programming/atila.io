@@ -1,0 +1,6 @@
+{
+  "databaseURL": "https://atila-r3s7jg.eu-west-1.xata.sh/db/atilaio",
+  "codegen": {
+    "output": "src/lib/xata.codegen.ts"
+  }
+}

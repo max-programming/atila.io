@@ -1,0 +1,76 @@
+---
+import photo from "../images/avatar-nobg.png";
+import PageHeader from "../components/page-header.astro";
+import Layout from "~/layouts/layout.astro";
+
+const metas = {
+  title: "About::Atila",
+};
+---
+
+<Layout metas={metas}>
+  <header class="w-11/12 mx-auto max-w-7xl">
+    <PageHeader title="About: Atila" />
+    <strong class="block mb-16 text-3xl text-slate-400">
+      Sharing what I learn and trying to make coding simpler.
+    </strong>
+  </header>
+  <div class="w-11/12 mx-auto max-w-7xl">
+    <article class="mt-8 text-2xl leading-8 max-w-prose">
+      <p class="mb-8">
+        I'm a self-taught developer originally from Brazil and currently living
+        in Germany. Pushing code since 2011, I have worked in teams of every
+        size and across 3 different continents.
+      </p>
+      <div
+        class="inline-block w-48 p-2 mb-8 ml-8 overflow-hidden rounded-lg md:float-right bg-gradient-to-tr from-amber-300 via-rose-400 to-indigo-400"
+      >
+        <img class="bg-black rounded-md" src={photo} alt="Atila Fassina" />
+      </div>
+      <p class="mb-8">
+        Content creation is a driving force and my favourite learning strategy.
+        I write articles on{" "}
+        <a
+          href="https://smashingmagazine.com/author/atila-fassina/"
+          target="_blank"
+          rel="noopener noreferrer"
+          title="Atila's author page on Smashing Magazine"
+          class="text-amber-200 hover:underline hover:decoration-dotted hover:underline-offset-2"
+        >
+          Smashing Magazine
+        </a>
+        , speak at meetups and conferences both online and offline, and record a
+        code-related videos. I am particularly interested in Serverless, Developer
+        Tooling, and the React ecosystem.
+      </p>
+      <p class="mb-8">
+        I work as Senior Developer Experience Engineer at{" "}
+        <a
+          href="https://xata.io"
+          target="_blank"
+          rel="noopener noreferrer"
+          title="Xata: Think data, not databases"
+          class="text-rose-300 hover:underline hover:decoration-dotted hover:underline-offset-2"
+        >
+          Xata
+        </a>
+        . Creating the best developer experience for Serverless Databases ever. I’m
+        lucky part of my work is connecting with amazing people in Developer Communities,
+        so if you have meetup, conference, podcast, or just want to chat: do it!
+      </p>
+      <p class="mb-8">
+        The fastest way to find me is via{" "}
+        <a
+          href="https://smashingmagazine.com/author/atila-fassina/"
+          target="_blank"
+          rel="noopener noreferrer"
+          title="Atila's twitter profile"
+          class="text-blue-200 hover:underline hover:decoration-dotted hover:underline-offset-2"
+        >
+          twitter
+        </a>{" "}
+        direct or public message.
+      </p>
+    </article>
+  </div>
+</Layout>

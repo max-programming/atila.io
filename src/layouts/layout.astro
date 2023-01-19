@@ -1,0 +1,35 @@
+---
+import "~/global.css";
+import Navigation from "../components/navigation.astro";
+import Footer from "../components/social-footer.astro";
+import "@fontsource/jost/variable.css";
+import type { Props as MetaProps } from "~/components/meta.astro";
+
+export type Props = {
+  metas: MetaProps["metas"];
+};
+
+const { title } = Astro.props;
+---
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{title}</title>
+  </head>
+  <body
+    class="grid-rows-[auto_1fr_auto] grid min-h-screen text-white font-sans"
+  >
+    <Navigation />
+    <main
+      class="grid place-items-center mb-32 text-left animate-blur-in font-light"
+    >
+      <slot />
+    </main>
+    <Footer />
+  </body>
+</html>

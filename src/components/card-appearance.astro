@@ -1,0 +1,64 @@
+---
+import type { AppearancesRecord } from "../lib/xata.codegen";
+import ResourceLink from "./talk-resource-link.astro";
+
+const BORDER_COLORS = (type?: AppearancesRecord["type"]) => {
+  switch (type) {
+    case "podcast":
+      return "from-blue-500 via-cyan-300 to-teal-400";
+    case "conference":
+      return "from-indigo-500 via-purple-500 to-pink-500";
+    case "meetup":
+    case "workshop":
+      return "from-yellow-500 via-amber-500 to-orange-500";
+    default:
+      return "from-zinc-500 via-slate-400 to-zinc-400";
+  }
+};
+
+const { name, title, type, description, recording, slides, date, url } =
+  Astro.props;
+---
+
+<li
+  class={`cta-hover-sm p-2 relative rounded-lg bg-gradient-to-tr ${BORDER_COLORS(
+    type
+  )}`}
+>
+  <div class="flex justify-between pr-4 absolute -top-8 w-full">
+    <strong class="font-mono text-lg font-normal text-slate-400">
+      {name}
+    </strong>
+    {
+      typeof date === "string" && (
+        <time
+          class="font-mono text-md text-slate-400"
+          date-time={new Date(date).toISOString()}
+        >
+          {date}
+        </time>
+      )
+    }
+  </div>
+  <div class="p-4 bg-black h-[100%] rounded-md grid grid-rows-[auto_1fr_auto]">
+    <h2 class="mb-3 text-2xl leading-snug">{title}</h2>
+    {
+      Boolean(description) && (
+        <p class="mt-2 text-md leading-8 text-slate-300">{description}</p>
+      )
+    }
+    <div class="flex justify-around mt-10 text-lg text-slate-200">
+      {typeof url === "string" && <ResourceLink url={url}>event</ResourceLink>}
+      {
+        typeof recording === "string" && (
+          <ResourceLink url={recording}>recording</ResourceLink>
+        )
+      }
+      {
+        typeof slides === "string" && (
+          <ResourceLink url={slides}>slides</ResourceLink>
+        )
+      }
+    </div>
+  </div>
+</li>

@@ -1,0 +1,28 @@
+---
+export type Props = Partial<Record<"metas", typeof DEFAULT_METAS>>;
+
+const DEFAULT_METAS = {
+  title: "Atila − Web Development",
+  description:
+    "Posts, screencasts, and courses focused on Jamstack, Web Performance, Design Systems, and User-Experience.",
+  image: "https://atila.io/og.jpg",
+};
+
+const metas = { ...DEFAULT_METAS, ...Astro.props.metas };
+---
+
+<link rel="webmention" href="https://webmention.io/atila.io/webmention" />
+<link rel="pingback" href="https://webmention.io/atila.io/xmlrpc" />
+
+<title>{metas.title}</title>
+<meta property="title" content={metas.title} />
+<meta property="description" content={metas.description} />
+<meta property="og:title" content={metas.title} />
+<meta property="og:description" content={metas.description} />
+<meta property="og:image" content={metas.image} />
+<meta property="og:type" content="website" />
+<meta property="twitter:card" content="summary_large_image" />
+<meta property="twitter:title" content={metas.title} />
+<meta property="twitter:description" content={metas.description} />
+<meta property="twitter:image" content={metas.image} />
+<meta property="theme-color" content="#000000" />

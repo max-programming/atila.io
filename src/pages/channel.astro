@@ -1,0 +1,58 @@
+---
+import PageHeader from "~/components/page-header.astro";
+import PageIntro from "~/components/page-intro.astro";
+import VideoCard from "~/components/card-video.astro";
+import Layout from "~/layouts/layout.astro";
+
+type VideoProps = {
+  id: {
+    videoId: string;
+  };
+  snippet: {
+    title: string;
+    publishedAt: string;
+    description: string;
+    thumbnails: {
+      high: {
+        url: string;
+      };
+    };
+  };
+};
+const getVideos = async (): Promise<VideoProps[]> => {
+  const resp = await fetch("https://youtube.atila.io/api");
+  return resp.json();
+};
+const videoList = await getVideos();
+
+const metas = {
+  title: "Channel :: Atila",
+};
+---
+
+<Layout metas={metas}>
+  <header class="w-11/12 mx-auto max-w-7xl">
+    <PageHeader title="Featured Videos" />
+    <PageIntro>
+      I enjoy creating content, and I use teaching as a medium for me to learn
+      new concepts. So I put effort in creating them for different medias, some
+      content just works better in video. Check the channel and subsbribe for
+      more on{" "}
+      <a
+        href="https://youtube.com/atilaio"
+        target="_blank"
+        rel="noopener noreferrer"
+        title="To AtilaIO Youtube Channel"
+        class="text-green-200 hover:underline hover:decoration-dotted hover:underline-offset-2"
+      >
+        Youtube
+      </a>
+      .
+    </PageIntro>
+  </header>
+  <ul
+    class="grid max-w-[90%] mx-auto sm:grid-cols-2 gap-16 mt-32 lg:grid-cols-3"
+  >
+    {videoList.map((videoProps) => <VideoCard {...videoProps} />)}
+  </ul>
+</Layout>

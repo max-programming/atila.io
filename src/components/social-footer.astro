@@ -1,0 +1,59 @@
+---
+// import {
+//   FaTwitter as Twitter,
+//   FaGithub as Github,
+//   FaYoutube as Youtube,
+//   FaLinkedin as Linkedin,
+// } from "react-icons/fa";
+
+import Youtube from "~/components/icons/youtube.astro";
+import Twitter from "~/components/icons/twitter.astro";
+import Github from "~/components/icons/github.astro";
+import Linkedin from "~/components/icons/linkedin.astro";
+import Mastodon from "~/components/icons/mastodon.astro";
+---
+
+<footer>
+  <ul class="flex flex-row justify-center gap-8 text-2xl mx-auto pb-8">
+    <li>
+      <a class="" href="https://atila.io/twitter" rel="noopener noreferrer">
+        <Twitter
+          class="text-zinc-400 w-6 h-6 hover:text-cyan-200 focus:text-cyan-200 transform translate-y-0 hover:-translate-y-1 hover:scale-105 focus:-translate-y-1 focus:scale-105 transition-all"
+        />
+        <span class="sr-only">twitter</span>
+      </a>
+    </li>
+    <li>
+      <a href="https://atila.io/github" rel="noopener noreferrer">
+        <Github
+          class="text-zinc-400 w-6 h-6 hover:text-white focus:text-white transform translate-y-0 hover:-translate-y-1 hover:scale-105 focus:-translate-y-1 focus:scale-105 transition-all"
+        />
+        <span class="sr-only">github</span>
+      </a>
+    </li>
+    <li>
+      <a href="https://atila.io/youtube" rel="noopener noreferrer">
+        <Youtube
+          class="w-6 h-6 text-zinc-400 hover:text-red-300 focus:text-white transform translate-y-0 hover:-translate-y-1 hover:scale-105 focus:-translate-y-1 focus:scale-105 transition-all"
+        />
+        <span class="sr-only">youtube</span>
+      </a>
+    </li>
+    <li>
+      <a rel="me noopener noreferrer" href="https://atila.io/mastodon">
+        <Mastodon
+          class="w-6 h-6 text-zinc-400 hover:text-purple-300 focus:text-white transform translate-y-0 hover:-translate-y-1 hover:scale-105 focus:-translate-y-1 focus:scale-105 transition-all"
+        />
+        <span class="sr-only">Mastodon</span>
+      </a>
+    </li>
+    <li>
+      <a rel="me noopener noreferrer" href="https://atila.io/linkedin">
+        <Linkedin
+          class="text-zinc-400 w-6 h-6 hover:text-blue-300 focus:text-blue-300 transform translate-y-0 hover:-translate-y-1 hover:scale-105 focus:-translate-y-1 focus:scale-105 transition-all"
+        />
+        <span class="sr-only">LinkedIn</span>
+      </a>
+    </li>
+  </ul>
+</footer>

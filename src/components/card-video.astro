@@ -1,0 +1,71 @@
+---
+import PlayIcon from "~/components/icons/play.astro";
+export type VideoProps = {
+  id: {
+    videoId: string;
+  };
+  snippet: {
+    title: string;
+    publishedAt: string;
+    description: string;
+    thumbnails: {
+      high: {
+        url: string;
+      };
+    };
+  };
+};
+const months = [
+  "jan",
+  "feb",
+  "mar",
+  "may",
+  "jun",
+  "jul",
+  "aug",
+  "sep",
+  "oct",
+  "nov",
+  "dec",
+];
+// const VideoCard: VideoCardProps = ({ id, snippet }) => {
+const { id, snippet } = Astro.props;
+---
+
+<li
+  class="cta-hover-sm rounded-2xl h-[100%] max-w-prose bg-gradient-to-b from-teal-300 via-green-400 to-emerald-500"
+>
+  <div
+    class="bg-black h-[100%] p-2 hover:bg-slate-900 focus-within:bg-slate-900 hover:rounded-lg focus-within:rounded-lg transition-colors flex justify-between ml-1 px-4"
+  >
+    <div class="w-4/5">
+      <div>
+        <time date-time={snippet.publishedAt} class="font-mono text-slate-300">
+          {months[new Date(snippet.publishedAt).getMonth() - 1]}/{
+            new Date(snippet.publishedAt).getFullYear()
+          }
+        </time>
+      </div>
+      <h2 class="flex w-full py-4 text-2xl leading-relaxed align-middle">
+        <a
+          class="block"
+          href={`https://youtube.com/watch?v=${id.videoId}`}
+          rel="noopener"
+          target="_blank"
+        >
+          {decodeURI(snippet.title)}
+        </a>
+      </h2>
+    </div>
+    <a
+      class="self-center"
+      href={`https://youtube.com/watch?v=${id.videoId}`}
+      rel="noopener"
+      target="_blank"
+      aria-hidden
+      tab-index={-1}
+    >
+      <PlayIcon class="w-10 h-10 ml-5 text-emerald-400" />
+    </a>
+  </div>
+</li>
