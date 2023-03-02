@@ -3,14 +3,16 @@ import avatar from "../images/avatar-nobg.png";
 ---
 
 <header
-  class="grid grid-rows-2 my-16 lg:grid-cols-2 sm:my-0 lg:gap-x-14 lg:items-end lg:grid-rows-1 place-items-center lg:relative lg:-right-14"
+  class="grid grid-rows-2 my-16 px-5 lg:grid-cols-2 sm:my-0 lg:gap-x-14 lg:items-end lg:grid-rows-1 place-items-center lg:relative lg:-right-14"
 >
   <div
     class="flex flex-col h-full text-center gap-y-3 lg:text-left animate-blur-in"
   >
-    <h1>
+    <h1
+      class="hover:bg-zinc-400 -ml-3 pt-3 px-3 rounded-sm text-white hover:text-black hover:transform hover:-rotate-6 transition-all"
+    >
       <svg
-        class="text-white sm:w-[411px] pb-4"
+        class="sm:w-[411px] pb-4"
         viewBox="0 0 411 68"
         fill="currentColor"
         xmlns="http://www.w3.org/2000/svg"
@@ -65,11 +67,18 @@ import avatar from "../images/avatar-nobg.png";
       </svg>
       <span class="sr-only">Atila Fassina</span>
     </h1>
-    <h2 class="text-3xl text-slate-400">Senior DX Engineer at Xata</h2>
-    <strong class="text-2xl text-slate-400">making code simpler</strong>
+    <h2
+      class="text-3xl text-slate-400 hover:transform hover:translate-x-2 transition-all"
+    >
+      Developer Experience Engineer
+    </h2>
+    <strong
+      class="text-2xl text-slate-200 hover:transform hover:-rotate-6 transition-all"
+      >making code simpler</strong
+    >
   </div>
   <div
-    class="block w-48 h-48 border-4 rounded-full overflow-hidden bg-gradient-to-tr from-red-500 via-orange-500 to-amber-500 border-red-500"
+    class="block hover:animate-half-spin animate-bkg-fast-move bg-[length:400px_400px] w-48 h-48 bkg-move border-4 rounded-full overflow-hidden bg-gradient-to-tr from-red-500 via-orange-500 to-amber-500 border-red-500"
   >
     <img class="rounded-full" src={avatar} alt="Atila's face" />
   </div>

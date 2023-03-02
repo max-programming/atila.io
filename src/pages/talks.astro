@@ -1,0 +1,56 @@
+---
+import Layout from "../layouts/layout.astro";
+import PageHeader from "../components/page-header.astro";
+import PageIntro from "../components/page-intro.astro";
+import AppearanceCard from "../components/card-appearance.astro";
+import { fetchAppearances } from "../lib/db.server";
+
+const appearances = await fetchAppearances();
+
+const appearancesMapByYear = appearances.reduce((mapped, appearance) => {
+  if (appearance.date && appearance.published) {
+    const year = String(new Date(appearance.date).getFullYear());
+    if (Array.isArray(mapped[year])) {
+      mapped[year]?.push(appearance);
+    } else if (!mapped[year]) {
+      mapped[year] = [appearance];
+    }
+  }
+
+  return mapped;
+}, {} as Record<string, unknown[]>);
+
+const metas = {
+  title: "Talks :: Atila",
+};
+---
+
+<Layout metas={metas}>
+  <header class="w-11/12 mx-auto max-w-7xl">
+    <PageHeader title="Past & Future Appearances" />
+    <PageIntro>
+      Starting off as a self-taught developer made me value the community a lot.
+      Sharing knowledge in conferences and meeting different people with similar
+      interests is one of my biggest passions in this carreers. Therefore, I
+      participate in conferences, podcasts, workshops, and meetups as often as I
+      can.
+    </PageIntro>
+  </header>
+
+  <section class="mt-20 mb-40 max-w-[90rem] mx-auto">
+    {
+      Object.entries(appearancesMapByYear)
+        .reverse()
+        .map(([year, appearanceList]) => (
+          <section class="mt-20 mb-40 max-w-[90rem] mx-auto">
+            <h2 class="text-4xl w-11/12 mx-auto max-w-7xl">{year}</h2>
+            <ul class="grid gap-x-10 gap-y-20 mt-16 sm:grid-cols-2 md:grid-cols-3 px-4">
+              {appearanceList?.map((appearance) =>
+                appearance ? <AppearanceCard {...appearance} /> : null
+              )}
+            </ul>
+          </section>
+        ))
+    }
+  </section>
+</Layout>

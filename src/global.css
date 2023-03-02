@@ -38,7 +38,6 @@
         theme(colors.stone.900)
       );
     background-size: 400% 400%;
-    animation: bkg 15s ease infinite;
   }
 
   .test-shadow {
@@ -112,4 +111,29 @@
     -webkit-text-fill-color: transparent;
     -webkit-box-decoration-break: clone;
   }
+}
+
+input:checked ~ #mobile-menu {
+  @apply translate-x-0;
+}
+
+label[aria-controls="mobile-menu"]::before,
+label[aria-controls="mobile-menu"]::after {
+  content: "";
+  width: 100%;
+  height: 4px;
+  background-color: white;
+  transition: transform 250ms linear;
+  transform-origin: center;
+}
+
+input:checked + label[aria-controls="mobile-menu"]::before {
+  transform: rotate(45deg) translateY(0.5rem);
+}
+input:checked + label[aria-controls="mobile-menu"]::after {
+  transform: rotate(-45deg) translateY(-0.5rem);
+}
+
+html:has(input:checked) {
+  overflow: hidden;
 }

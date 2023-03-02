@@ -3,13 +3,15 @@ import "~/global.css";
 import Navigation from "../components/navigation.astro";
 import Footer from "../components/social-footer.astro";
 import "@fontsource/jost/variable.css";
-import type { Props as MetaProps } from "~/components/meta.astro";
+import type { Props as MetaProps } from "~/components/metas.astro";
+import Metas from "~/components/metas.astro";
+import MenuMobile from "~/components/menu-mobile.astro";
 
 export type Props = {
   metas: MetaProps["metas"];
 };
 
-const { title } = Astro.props;
+const { metas } = Astro.props;
 ---
 
 <!DOCTYPE html>
@@ -19,12 +21,13 @@ const { title } = Astro.props;
     <meta name="viewport" content="width=device-width" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="generator" content={Astro.generator} />
-    <title>{title}</title>
+    <Metas metas={metas} />
   </head>
   <body
-    class="grid-rows-[auto_1fr_auto] grid min-h-screen text-white font-sans"
+    class="grid-rows-[auto_1fr_auto] animate-bkg-move grid min-h-screen text-white font-sans"
   >
     <Navigation />
+    <MenuMobile />
     <main
       class="grid place-items-center mb-32 text-left animate-blur-in font-light"
     >

@@ -1,5 +1,5 @@
 ---
-const items = ["Channel", "Appearances", "Writing", "About"]; //, 'Uses']
+const items = ["Channel", "Talks", "Writing", "About"]; //, 'Uses']
 const activeStyle = (isActive: boolean) =>
   isActive ? "active-special-underline" : "";
 
@@ -7,7 +7,7 @@ const pathname = new URL(Astro.request.url).pathname;
 ---
 
 <nav
-  class="grid p-5 transition-colors grid-cols-[auto,1fr,auto] place-items-center max-w-screen text-slate-300"
+  class="hidden sm:grid p-5 transition-colors grid-cols-[auto,1fr,auto] place-items-center max-w-screen text-slate-300"
 >
   <a href="/" class="p-2 rounded-sm cta-hover-sm">
     <svg

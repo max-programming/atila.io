@@ -12,26 +12,38 @@ module.exports = {
 
       animation: {
         "blur-in": "400ms blur-in linear",
-        orbit: "40s orbit linear infinite",
-        "counter-orbit": "40s counter-orbit linear infinite",
-        "slide-up": "1s slide-up ease-in-out",
+        "slide-up": "500ms slide-up ease-in-out",
+        "slide-down": "500ms slide-down ease-in-out",
+        "bkg-move": "bkg-move 20s ease infinite",
+        "bkg-fast-move": "bkg-move 5s ease infinite",
+        "half-spin": "half-spin 2s linear infinite",
       },
       keyframes: {
         "blur-in": {
           "0%": { filter: "blur(10px)" },
           "100%": { filter: "blur(0)" },
         },
-        orbit: {
-          "0%": { transform: "rotate(0)" },
-          "100%": { transform: "rotate(360deg)" },
-        },
-        "counter-orbit": {
-          "0%": { transform: "rotate(0)" },
-          "100%": { transform: "rotate(-360deg)" },
+        "bkg-move": {
+          "0%": {
+            backgroundPosition: "0% 50%",
+          },
+          "50%": {
+            backgroundPosition: "100% 50%",
+          },
+          "100%": {
+            backgroundPosition: "0% 50%",
+          },
         },
         "slide-up": {
           "0%": { transform: "translateY(100%)", filter: "blur(10px)" },
           "100%": { transform: "translateY(0)", filter: "blur(0)" },
+        },
+        "half-spin": {
+          "0%": { transform: "rotate(0deg)" },
+          "25%": { transform: "rotate(15deg)" },
+          "50%": { transform: "rotate(0deg)" },
+          "75%": { transform: "rotate(-15deg)" },
+          "100%": { transform: "rotate(0deg)" },
         },
       },
     },
