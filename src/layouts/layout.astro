@@ -8,26 +8,72 @@ import Metas from "~/components/metas.astro";
 import MenuMobile from "~/components/menu-mobile.astro";
 
 export type Props = {
-  metas: MetaProps["metas"];
+  metas?: MetaProps["metas"];
 };
 
 const { metas } = Astro.props;
 ---
 
-<!DOCTYPE html>
+<script is:inline>
+  console.log(
+    `\n %c 🤨 OE!OE! 🤨 \n What are you doing? \n`,
+    "background: #222; color: #ef4444; font-weight: bold; font-size: 48px"
+  );
+
+  console.table({
+    twitter: "atila.io/twitter",
+    mastodon: "atila.io/mastodon",
+    github: "atila.io/github",
+    linkedin: "atila.io/linkedin",
+  });
+</script>
+
+<script>
+  const theme = (() => {
+    if (typeof localStorage !== "undefined" && localStorage.getItem("theme")) {
+      return localStorage.getItem("theme");
+    }
+    if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
+      return "dark";
+    }
+    return "light";
+  })();
+
+  if (theme === "light") {
+    document.documentElement.classList.remove("dark");
+  } else {
+    document.documentElement.classList.add("dark");
+  }
+  window.localStorage.setItem("theme", String(theme));
+
+  const handleToggleClick = () => {
+    const element = document.documentElement;
+    element.classList.toggle("dark");
+
+    const isDark = element.classList.contains("dark");
+    localStorage.setItem("theme", isDark ? "dark" : "light");
+  };
+
+  Array.from(document?.querySelectorAll(".theme-toggle")).forEach((trigger) => {
+    trigger.addEventListener("click", handleToggleClick);
+  });
+</script>
+
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/svg+xml" href="/blank.svg" />
     <meta name="generator" content={Astro.generator} />
     <Metas metas={metas} />
   </head>
   <body
-    class="grid-rows-[auto_1fr_auto] animate-bkg-move grid min-h-screen text-white font-sans"
+    class="grid-rows-[auto_1fr_auto] bg-dotted bg-[length:22px_22px] dark:bg-[length:400%_400%] dark:bg-dark dark:animate-bkg-move grid min-h-screen dark:text-white text-black font-sans"
   >
-    <Navigation />
-    <MenuMobile />
+    <div>
+      <Navigation />
+      <MenuMobile />
+    </div>
     <main
       class="grid place-items-center mb-32 text-left animate-blur-in font-light"
     >

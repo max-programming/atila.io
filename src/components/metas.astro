@@ -1,11 +1,12 @@
 ---
-export type Props = Record<"metas", Partial<typeof DEFAULT_METAS>>;
+export type Props = Record<"metas", Partial<typeof DEFAULT_METAS> | undefined>;
 
 const DEFAULT_METAS = {
   title: "Atila − Web Development",
-  description:
-    "Posts, screencasts, and courses focused on Jamstack, Web Performance, Design Systems, and User-Experience.",
-  image: "https://atila.io/og.jpg",
+  description: "Content hub of Atila Fassina.",
+  image: import.meta.env.DEV
+    ? "http://localhost:3000/og.png"
+    : "https://atila.io/og.png",
 };
 
 const metas = { ...DEFAULT_METAS, ...Astro.props.metas };
