@@ -14,7 +14,6 @@ module.exports = {
       animation: {
         "blur-in": "400ms blur-in linear",
         "slide-up": "500ms slide-up ease-in-out",
-        "slide-down": "500ms slide-down ease-in-out",
         "bkg-move": "bkg-move 20s ease infinite",
         "bkg-fast-move": "bkg-move 5s ease infinite",
         "half-spin": "half-spin 2s linear infinite",
