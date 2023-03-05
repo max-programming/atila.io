@@ -1,14 +1,29 @@
 import { defineConfig } from "astro/config";
-
-// https://astro.build/config
 import tailwind from "@astrojs/tailwind";
-
-// https://astro.build/config
 import vercel from "@astrojs/vercel/serverless";
+import sitemap from "@astrojs/sitemap";
+import { pages } from "./pages.codegen.json";
 
-// https://astro.build/config
 export default defineConfig({
   output: "server",
-  integrations: [tailwind()],
+  site: "https://atila.io",
+  integrations: [
+    tailwind(),
+    sitemap({
+      changefreq: "monthly",
+      priority: 0.7,
+      lastmod: new Date(),
+      customPages: pages,
+      serialize: (item) => {
+        if (/writing/.test(item.url) || /channel/.test(item.url)) {
+          item.changefreq = "weekly";
+          item.lastmod = new Date();
+          item.priority = 1;
+        }
+
+        return item;
+      },
+    }),
+  ],
   adapter: vercel(),
 });
