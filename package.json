@@ -1,8 +1,13 @@
 {
   "name": "atila.io",
   "type": "module",
-  "version": "0.0.1",
+  "version": "9.0.0",
   "private": true,
+  "license": "ISC",
+  "author": {
+    "name": "Atila Fassina",
+    "url": "https://atila.io"
+  },
   "scripts": {
     "dev": "astro dev",
     "start": "astro dev",
