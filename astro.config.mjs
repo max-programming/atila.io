@@ -15,7 +15,11 @@ export default defineConfig({
       lastmod: new Date(),
       customPages: pages,
       serialize: (item) => {
-        if (/writing/.test(item.url) || /channel/.test(item.url)) {
+        if (
+          /writing/.test(item.url) ||
+          /channel/.test(item.url) ||
+          /talks/.test(item.url)
+        ) {
           item.changefreq = "weekly";
           item.lastmod = new Date();
           item.priority = 1;

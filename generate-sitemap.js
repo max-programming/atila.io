@@ -15,6 +15,7 @@ async function isStaticRoute(fileName) {
   const dynamicRoutes = await Promise.all(
     files.map(async (pageFile) => {
       const isStatic = await isStaticRoute(pageFile);
+
       return !isStatic && `https://atila.io/${pageFile.replace(".astro", "")}`;
     })
   );
