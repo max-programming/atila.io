@@ -3,20 +3,14 @@ import type { talkTypesSchema } from "./db.server";
 
 type TalkType = z.infer<typeof talkTypesSchema>;
 
-/**
- * This keyword soup is inferring a tuple from `TalkType` Zod schema.
- * Without `as const` and `readonly` it becomes an Array of a Union.
- * With them, it's a tuple.
- */
 export const TALK_TYPES = [
   "podcast",
   "conference",
   "meetup",
   "workshop",
-] as const satisfies readonly TalkType[];
+] satisfies TalkType[];
 
 export function getTalkBorder(type: TalkType) {
-  console.log(type);
   switch (type) {
     case "podcast":
       return "from-blue-500 via-cyan-300 to-teal-400";

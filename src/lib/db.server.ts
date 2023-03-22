@@ -23,16 +23,16 @@ export const talkTypesSchema = z
 export const talkListSchema = z.array(
   z.object({
     id: z.string(),
-    date: z.string().optional().nullable(),
-    name: z.string().optional().nullable(),
-    title: z.string().optional().nullable(),
-    description: z.string().optional().nullable(),
+    date: z.string().catch("TBD"),
+    name: z.string().catch("To be announced"),
+    title: z.string().catch("To be announced"),
+    description: z.string().catch("To be announced"),
     recording: z.string().optional().nullable(),
     slides: z.string().optional().nullable(),
     url: z.string().optional().nullable(),
     type: talkTypesSchema,
-    published: z.boolean().optional().nullable(),
-    isFuture: z.boolean().optional().nullable(),
+    published: z.boolean().catch(false),
+    isFuture: z.boolean().catch(true),
     place: z.string().optional().nullable(),
   })
 );
