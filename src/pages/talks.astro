@@ -3,13 +3,20 @@ import Layout from "../layouts/layout.astro";
 import PageHeader from "../components/page-header.astro";
 import PageIntro from "../components/page-intro.astro";
 import AppearanceCard from "../components/card-appearance.astro";
-import { fetchAppearances } from "../lib/db.server";
+import { fetchAppearances, talkListSchema } from "../lib/db.server";
+import { getTalkBorder, TALK_TYPES } from "~/lib/get-talk-border";
+import type { z } from 'zod'
+
+type YearlyMap = {
+  [key: string]: z.infer<typeof talkListSchema>
+}
 
 const appearances = await fetchAppearances();
 
-const appearancesMapByYear = appearances.reduce((mapped, appearance) => {
+const appearancesMapByYear = appearances.reduce<YearlyMap>((mapped, appearance) => {
   if (appearance.date && appearance.published) {
     const year = String(new Date(appearance.date).getFullYear());
+    
     if (Array.isArray(mapped[year])) {
       mapped[year]?.push(appearance);
     } else if (!mapped[year]) {
@@ -18,13 +25,12 @@ const appearancesMapByYear = appearances.reduce((mapped, appearance) => {
   }
 
   return mapped;
-}, {} as Record<string, unknown[]>);
+}, {});
 
 const metas = {
   title: "Talks :: Atila",
 };
 ---
-
 <Layout metas={metas}>
   <header class="w-11/12 mx-auto max-w-7xl">
     <PageHeader title="Past & Future Appearances" />
@@ -35,6 +41,19 @@ const metas = {
       participate in conferences, podcasts, workshops, and meetups as often as I
       can.
     </PageIntro>
+    <aside class="mt-10 p-5 border border-zinc-800 inline-block rounded-xl ">
+      <strong class="block text-zinc-500 mb-2">
+        Glossary
+      </strong>
+      <ul class="grid grid-cols-2 gap-x-5">
+        { TALK_TYPES.map(type => (
+          <li class="">
+            <i class={`w-8 h-8 bg-gradient-to-tr ${getTalkBorder(type)} inline-block rounded-full`} />
+            <span class="relative -top-3">{type}</span>
+          </li>
+        ))}
+      </ul>
+    </aside>
   </header>
 
   <section class="max-w-[90rem] mx-auto">
@@ -44,7 +63,7 @@ const metas = {
         .map(([year, appearanceList]) => (
           <section class="my-20 max-w-[90rem] mx-auto">
             <h2 class="text-4xl w-11/12 mx-auto max-w-7xl">{year}</h2>
-            <ul class="grid gap-x-10 gap-y-20 mt-16 md:grid-cols-2 lg:grid-cols-3 px-4">
+            <ul class="grid gap-x-10 gap-y-20 mt-16 sm:grid-cols-2 xl:grid-cols-3 px-4">
               {appearanceList?.map((appearance) =>
                 appearance ? <AppearanceCard {...appearance} /> : null
               )}

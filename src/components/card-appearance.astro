@@ -1,27 +1,15 @@
 ---
-import type { AppearancesRecord } from "../lib/xata.codegen";
+import { getTalkBorder } from "~/lib/get-talk-border";
 import ResourceLink from "./talk-resource-link.astro";
-
-const BORDER_COLORS = (type?: AppearancesRecord["type"]) => {
-  switch (type) {
-    case "podcast":
-      return "from-blue-500 via-cyan-300 to-teal-400";
-    case "conference":
-      return "from-indigo-500 via-purple-500 to-pink-500";
-    case "meetup":
-    case "workshop":
-      return "from-yellow-500 via-amber-500 to-orange-500";
-    default:
-      return "from-zinc-500 via-slate-400 to-zinc-400";
-  }
-};
 
 const { name, title, type, description, recording, slides, date, url } =
   Astro.props;
+
+  const eventDate = new Date(date)
 ---
 
 <li
-  class={`cta-hover-sm p-2 relative rounded-lg bg-gradient-to-tr ${BORDER_COLORS(
+  class={`cta-hover-sm p-2 relative rounded-lg bg-gradient-to-tr ${getTalkBorder(
     type
   )}`}
 >
@@ -35,7 +23,7 @@ const { name, title, type, description, recording, slides, date, url } =
       typeof date === "string" && (
         <time
           class="font-mono text-md dark:text-slate-400 text-slate-600"
-          date-time={new Date(date).toISOString()}
+          date-time={eventDate.toISOString()}
         >
           {date}
         </time>
@@ -53,7 +41,7 @@ const { name, title, type, description, recording, slides, date, url } =
         </p>
       )
     }
-    <div class="flex justify-around mt-10 text-lg text-slate-200">
+    <div class="flex justify-around mt-10 text-lg text-slate-200 bg-">
       {typeof url === "string" && <ResourceLink url={url}>event</ResourceLink>}
       {
         typeof recording === "string" && (
