@@ -1,8 +1,12 @@
 import { defineConfig } from "astro/config";
 import tailwind from "@astrojs/tailwind";
-import vercel from "@astrojs/vercel/edge";
 import sitemap from "@astrojs/sitemap";
 import { pages } from "./pages.codegen.json";
+/**
+ * @todo
+ * Add Edge runtime back when it supports Insights
+ */
+import vercel from "@astrojs/vercel/serverless";
 
 export default defineConfig({
   output: "server",
