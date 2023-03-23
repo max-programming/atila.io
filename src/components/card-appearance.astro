@@ -1,15 +1,15 @@
 ---
-import { getTalkBorder } from "~/lib/get-talk-border";
+import { getCardBorder } from "~/lib/get-card-border";
 import ResourceLink from "./talk-resource-link.astro";
 
 const { name, title, type, description, recording, slides, date, url } =
   Astro.props;
 
-  const eventDate = new Date(date)
+const eventDate = new Date(date);
 ---
 
 <li
-  class={`cta-hover-sm p-2 relative rounded-lg bg-gradient-to-tr ${getTalkBorder(
+  class={`cta-hover-sm p-2 relative rounded-lg bg-gradient-to-tr ${getCardBorder(
     type
   )}`}
 >

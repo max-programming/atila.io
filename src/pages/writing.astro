@@ -4,6 +4,15 @@ import WritingCard from "~/components/card-writing.astro";
 import PageIntro from "~/components/page-intro.astro";
 import Layout from "~/layouts/layout.astro";
 import { fetchArticles } from "~/lib/db.server";
+import Glossary from "~/components/glossary.astro";
+import type { ArticlePlatformType } from "~/lib/schemas";
+
+const ARTICLE_PLATFORM = [
+  "smashing",
+  "dev-to",
+  "css-tricks",
+  "xata",
+] satisfies ArticlePlatformType[];
 
 const articles = await fetchArticles();
 
@@ -30,6 +39,7 @@ const metas = { title: "Writing :: Atila" };
       </a>
       .
     </PageIntro>
+    <Glossary types={ARTICLE_PLATFORM} />
   </header>
   <ul
     class="grid gap-16 mt-32 px-4 max-w-[90rem] mx-auto lg:grid-cols-2 2xl:grid-cols-3"

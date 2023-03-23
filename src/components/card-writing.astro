@@ -1,20 +1,5 @@
 ---
-import type { ArticlesRecord } from "~/lib/xata.codegen";
-
-const BORDER_COLORS = (type?: ArticlesRecord["platform"]) => {
-  switch (type) {
-    case "smashing":
-      return "from-red-500 via-amber-500 to-yellow-500";
-    case "xata":
-      return "from-cyan-500 via-pink-500 to-cyan-500";
-    case "dev-to":
-      return "from-zinc-200 via-sky-200 to-stone-200";
-    case "css-tricks":
-      return "from-amber-500 via-pink-500 to-cyan-500";
-    default:
-      return "from-indigo-500 via-purple-500 to-pink-500";
-  }
-};
+import { getCardBorder } from "~/lib/get-card-border";
 
 const {
   title,
@@ -26,13 +11,12 @@ const {
 ---
 
 <li
-  class={` cta-hover-sm p-2 rounded-lg bg-gradient-to-tr ${BORDER_COLORS(
+  class={` cta-hover-sm p-2 rounded-lg bg-gradient-to-tr ${getCardBorder(
     platform
   )}`}
 >
   <div class="p-6 dark:bg-black bg-zinc-50 rounded-md h-[100%]">
     <div class="flex justify-between">
-      <!-- {typeof platform === "string" && platformData.get(platform)} -->
       {
         typeof publishAt === "string" && (
           <time
