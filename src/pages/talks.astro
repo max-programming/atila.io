@@ -19,7 +19,10 @@ const appearances = await fetchAppearances();
 const appearancesMapByYear = appearances.reduce<YearlyMap>(
   (mapped, appearance) => {
     if (appearance.date && appearance.published) {
-      const year = String(new Date(appearance.date).getFullYear());
+      const year =
+        appearance.date === "TBD"
+          ? appearance.date
+          : String(new Date(appearance.date).getFullYear());
 
       if (Array.isArray(mapped[year])) {
         mapped[year]?.push(appearance);

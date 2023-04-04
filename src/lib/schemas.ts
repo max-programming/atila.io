@@ -14,22 +14,22 @@ export const articlePlatformSchema = z.union([
   z.literal("xata"),
 ]);
 
-export const talkListSchema = z.array(
-  z.object({
-    id: z.string(),
-    date: z.string().catch("TBD"),
-    name: z.string().catch("To be announced"),
-    title: z.string().catch("To be announced"),
-    description: z.string().catch("To be announced"),
-    recording: z.string().optional().nullable(),
-    slides: z.string().optional().nullable(),
-    url: z.string().optional().nullable(),
-    type: talkTypesSchema,
-    published: z.boolean().catch(false),
-    isFuture: z.boolean().catch(true),
-    place: z.string().optional().nullable(),
-  })
-);
+export const talkSchema = z.object({
+  id: z.string(),
+  date: z.string().catch("TBD"),
+  name: z.string().catch("To be announced"),
+  title: z.string().catch("To be announced"),
+  description: z.string().catch("To be announced"),
+  recording: z.string().optional().nullable(),
+  slides: z.string().optional().nullable(),
+  url: z.string().optional().nullable(),
+  type: talkTypesSchema,
+  published: z.boolean().catch(false),
+  isFuture: z.boolean().catch(true),
+  place: z.string().optional().nullable(),
+});
+
+export const talkListSchema = z.array(talkSchema);
 
 export const articleListSchema = z.array(
   z.object({

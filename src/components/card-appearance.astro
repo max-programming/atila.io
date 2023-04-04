@@ -1,11 +1,17 @@
 ---
+import type { z } from "zod";
 import { getCardBorder } from "~/lib/get-card-border";
+import { talkSchema } from "~/lib/schemas";
 import ResourceLink from "./talk-resource-link.astro";
 
-const { name, title, type, description, recording, slides, date, url } =
-  Astro.props;
+export type Props = z.infer<typeof talkSchema>;
 
-const eventDate = new Date(date);
+const talkProps = Astro.props;
+
+const { name, title, type, description, recording, slides, date, url } =
+  await talkSchema.parseAsync(talkProps);
+
+const eventDate = date === "TBD" ? null : new Date(date);
 ---
 
 <li
@@ -20,7 +26,7 @@ const eventDate = new Date(date);
       {name}
     </strong>
     {
-      typeof date === "string" && (
+      Boolean(eventDate) && (
         <time
           class="font-mono text-md dark:text-slate-400 text-slate-600"
           date-time={eventDate.toISOString()}
