@@ -26,7 +26,11 @@ const eventDate = date === "TBD" ? null : new Date(date);
       {name}
     </strong>
     {
+<<<<<<< HEAD
       Boolean(eventDate) && (
+=======
+      eventDate !== null && (
+>>>>>>> c128f80 (add support to `null` date)
         <time
           class="font-mono text-md dark:text-slate-400 text-slate-600"
           date-time={eventDate.toISOString()}

@@ -21,7 +21,7 @@ const appearancesMapByYear = appearances.reduce<YearlyMap>(
     if (appearance.date && appearance.published) {
       const year =
         appearance.date === "TBD"
-          ? appearance.date
+          ? "Announcing soon..."
           : String(new Date(appearance.date).getFullYear());
 
       if (Array.isArray(mapped[year])) {
