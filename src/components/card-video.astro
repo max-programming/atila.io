@@ -1,5 +1,4 @@
 ---
-import PlayIcon from "~/components/icons/play.astro";
 export type VideoProps = {
   id: {
     videoId: string;
@@ -19,6 +18,7 @@ const months = [
   "jan",
   "feb",
   "mar",
+  "apr",
   "may",
   "jun",
   "jul",
@@ -34,34 +34,22 @@ const { id, snippet } = Astro.props;
 const monthIndex =
   new Date(snippet.publishedAt).getMonth() === 0
     ? new Date(snippet.publishedAt).getMonth()
-    : new Date(snippet.publishedAt).getMonth() - 1;
+    : new Date(snippet.publishedAt).getMonth();
 ---
 
 <li
-  class="cta-hover-sm rounded-2xl h-[100%] max-w-prose bg-gradient-to-b from-teal-300 via-green-400 to-emerald-500"
+  class="cta-hover-sm group rounded-2xl h-[100%] max-w-prose bg-gradient-to-tl from-neutral-200 via-neutral-700 to-neutral-400 hover:from-orange-300 hover:via-amber-400 hover:to-red-500 p-2 transition-all"
 >
   <div
-    class="dark:bg-black bg-zinc-50 h-[100%] p-2 flex justify-between ml-1 px-4"
+    class="dark:bg-black bg-neutral-800 text-white h-[100%] py-2 px-4 rounded-lg"
   >
-    <div class="w-4/5">
-      <div>
-        <time
-          date-time={snippet.publishedAt}
-          class="font-mono dark:text-slate-300 text-slate-500"
-        >
-          {months[monthIndex]}/{new Date(snippet.publishedAt).getFullYear()}
-        </time>
-      </div>
-      <h2 class="flex w-full py-4 text-2xl leading-relaxed align-middle">
-        <a
-          class="block"
-          href={`https://youtube.com/watch?v=${id.videoId}`}
-          rel="noopener"
-          target="_blank"
-        >
-          {decodeURI(snippet.title)}
-        </a>
-      </h2>
+    <div>
+      <time
+        date-time={snippet.publishedAt}
+        class="font-mono dark:text-slate-300 text-slate-500 block text-center pt-3"
+      >
+        {months[monthIndex]}/{new Date(snippet.publishedAt).getFullYear()}
+      </time>
     </div>
     <a
       class="self-center"
@@ -71,7 +59,21 @@ const monthIndex =
       aria-hidden
       tab-index={-1}
     >
-      <PlayIcon class="w-10 h-10 ml-5 text-emerald-400" />
+      <img
+        class="mx-auto"
+        src={snippet.thumbnails.medium.url}
+        alt={`cover for ${snippet.title}`}
+      />
     </a>
+    <h2 class="flex w-full pt-4 text-2xl leading-relaxed text-center">
+      <a
+        class="block"
+        href={`https://youtube.com/watch?v=${id.videoId}`}
+        rel="noopener"
+        target="_blank"
+      >
+        {decodeURI(snippet.title)}
+      </a>
+    </h2>
   </div>
 </li>

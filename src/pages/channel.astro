@@ -4,6 +4,12 @@ import PageIntro from "~/components/page-intro.astro";
 import VideoCard from "~/components/card-video.astro";
 import Layout from "~/layouts/layout.astro";
 
+type Thumbnail = {
+  url: string;
+  width: number;
+  height: number;
+};
+
 type VideoProps = {
   id: {
     videoId: string;
@@ -12,11 +18,7 @@ type VideoProps = {
     title: string;
     publishedAt: string;
     description: string;
-    thumbnails: {
-      high: {
-        url: string;
-      };
-    };
+    thumbnails: Record<"default" | "high" | "medium", Thumbnail>;
   };
 };
 const getVideos = async (): Promise<VideoProps[]> => {
@@ -24,7 +26,6 @@ const getVideos = async (): Promise<VideoProps[]> => {
   return resp.json();
 };
 const videoList = await getVideos();
-
 const metas = {
   title: "Channel :: Atila",
 };
@@ -43,7 +44,7 @@ const metas = {
         target="_blank"
         rel="noopener noreferrer"
         title="To AtilaIO Youtube Channel"
-        class="dark:text-green-200 text-green-600 hover:underline hover:decoration-dotted hover:underline-offset-2"
+        class="dark:text-red-400 text-red-700 hover:underline hover:decoration-dotted hover:underline-offset-2"
       >
         Youtube
       </a>
