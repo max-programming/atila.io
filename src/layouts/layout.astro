@@ -13,8 +13,15 @@ export type Props = {
 
 const { metas } = Astro.props;
 
-const isProd = import.meta.env.PROD
+const isProd = import.meta.env.PROD;
 ---
+
+<script
+  is:inline
+  defer
+  src="https://static.cloudflareinsights.com/beacon.min.js"
+  data-cf-beacon='{"token": "6f7dd11497db4b548570eb8ebf1f5b10", "spa": false}'
+></script>
 
 <script is:inline>
   console.log(
@@ -67,9 +74,7 @@ const isProd = import.meta.env.PROD
     <meta name="viewport" content="width=device-width" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="generator" content={Astro.generator} />
-{
-  !isProd && <script defer src="/_vercel/insights/script.js"></script>
-}
+    {!isProd && <script defer src="/_vercel/insights/script.js" />}
     <Metas metas={metas} />
   </head>
   <body
