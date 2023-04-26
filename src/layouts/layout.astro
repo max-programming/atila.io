@@ -12,8 +12,6 @@ export type Props = {
 };
 
 const { metas } = Astro.props;
-
-const isProd = import.meta.env.PROD;
 ---
 
 <script
@@ -74,7 +72,6 @@ const isProd = import.meta.env.PROD;
     <meta name="viewport" content="width=device-width" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="generator" content={Astro.generator} />
-    {!isProd && <script defer src="/_vercel/insights/script.js" />}
     <Metas metas={metas} />
   </head>
   <body
