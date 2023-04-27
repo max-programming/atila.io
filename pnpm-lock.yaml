@@ -1,6 +1,9 @@
 lockfileVersion: '6.0'
 
 dependencies:
+  '@astrojs/rss':
+    specifier: ^2.3.2
+    version: 2.3.2
   '@astrojs/sitemap':
     specifier: ^1.1.0
     version: 1.1.0
@@ -100,6 +103,13 @@ packages:
     engines: {node: '>=16.12.0'}
     dependencies:
       prismjs: 1.29.0
+    dev: false
+
+  /@astrojs/rss@2.3.2:
+    resolution: {integrity: sha512-R/nKOY7O48RQhD8d2i7yJBMS4sTHEHp17zFQIlrGfGXBHYKOOdyeF36UyjECSN3oglKwpi+vdGzQW/UGwJcNHg==}
+    dependencies:
+      fast-xml-parser: 4.2.2
+      kleur: 4.1.5
     dev: false
 
   /@astrojs/sitemap@1.1.0:
@@ -1513,6 +1523,13 @@ packages:
       glob-parent: 5.1.2
       merge2: 1.4.1
       micromatch: 4.0.5
+    dev: false
+
+  /fast-xml-parser@4.2.2:
+    resolution: {integrity: sha512-DLzIPtQqmvmdq3VUKR7T6omPK/VCRNqgFlGtbESfyhcH2R4I8EzK1/K6E8PkRCK2EabWrUHK32NjYRbEFnnz0Q==}
+    hasBin: true
+    dependencies:
+      strnum: 1.0.5
     dev: false
 
   /fastq@1.15.0:
@@ -3199,6 +3216,10 @@ packages:
   /strip-final-newline@3.0.0:
     resolution: {integrity: sha512-dOESqjYr96iWYylGObzd39EuNTa5VJxyvVAEm5Jnh7KGo75V43Hk1odPQkNDyXNmUR6k+gEiDVXnjB8HJ3crXw==}
     engines: {node: '>=12'}
+    dev: false
+
+  /strnum@1.0.5:
+    resolution: {integrity: sha512-J8bbNyKKXl5qYcR36TIO8W3mVGVHrmmxsd5PAItGkmyzwJvybiw2IVq5nqd0i4LSNSkB/sx9VHllbfFdr9k1JA==}
     dev: false
 
   /suf-log@2.5.3:
