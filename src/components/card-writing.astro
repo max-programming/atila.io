@@ -1,5 +1,13 @@
 ---
 import { getCardBorder } from "~/lib/get-card-border";
+import type { ArticlePlatformType, TalkType } from "../lib/schemas";
+type Props = {
+  title: string;
+  description: string;
+  platform: ArticlePlatformType | TalkType;
+  url: string;
+  publishAt: string;
+};
 
 const {
   title,

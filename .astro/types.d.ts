@@ -72,7 +72,7 @@ declare module 'astro:content' {
   slug: "test",
   body: string,
   collection: "notes",
-  data: any
+  data: InferEntrySchema<"notes">
 },
 },
 

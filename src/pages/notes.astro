@@ -1,0 +1,53 @@
+---
+import PageHeader from "~/components/page-header.astro";
+import PageIntro from "~/components/page-intro.astro";
+import Layout from "~/layouts/layout.astro";
+import { getCollection } from "astro:content";
+import CardWriting from "~/components/card-writing.astro";
+
+const noteEntries = await getCollection("notes");
+
+const metas = {
+  title: "Notes :: Atila",
+};
+---
+
+<Layout metas={metas}>
+  <header class="w-11/12 mx-auto max-w-7xl">
+    <PageHeader>Notes & Snippets</PageHeader>
+    <PageIntro>
+      I enjoy creating content, and I use teaching as a medium for me to learn
+      new concepts. So I put effort in creating them for different medias, some
+      content just works better in video. Check the channel and subsbribe for
+      more on{" "}
+      <a
+        href="https://youtube.com/atilaio"
+        target="_blank"
+        rel="noopener noreferrer"
+        title="To AtilaIO Youtube Channel"
+        class="dark:text-red-400 text-red-700 hover:underline hover:decoration-dotted hover:underline-offset-2"
+      >
+        Youtube
+      </a>
+      .
+    </PageIntro>
+  </header>
+  <ul
+    class="grid gap-16 mt-32 px-4 max-w-[90rem] mx-auto lg:grid-cols-2 2xl:grid-cols-3"
+  >
+    {
+      noteEntries.map(({ data }) => {
+        const { title, publishDate } = data;
+        return (
+          <CardWriting
+            title={title}
+            platform="conference"
+            url="/s"
+            description="none"
+            publishAt={publishDate.toISOString()}
+          />
+        );
+      })
+    }
+  </ul>
+</Layout>

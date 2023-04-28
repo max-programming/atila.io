@@ -35,7 +35,7 @@ export const articleListSchema = z.array(
   z.object({
     id: z.string(),
     title: z.string().optional().nullable(),
-    published_at: z.string().optional().nullable(),
+    published_at: z.string(),
     description: z.string().optional().nullable(),
     url: z.string().optional().nullable(),
     platform: articlePlatformSchema,

@@ -46,7 +46,10 @@ const metas = { title: "Writing :: Atila" };
   >
     {
       articles.length > 0 &&
-        articles.map((article) => <WritingCard {...article} />)
+        articles.map((article) => {
+          // @ts-ignore
+          return <WritingCard {...article} publishAt={article.published_at} />;
+        })
     }
   </ul>
 </Layout>
