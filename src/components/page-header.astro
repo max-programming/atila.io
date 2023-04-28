@@ -1,4 +1,10 @@
 ---
+import Rss from "./icons/rss.astro";
+
+type Props = {
+  rssUrl?: string;
+};
+
 const gradient = (pageName?: string) => {
   switch (pageName) {
     case "talks":
@@ -18,15 +24,29 @@ const gradient = (pageName?: string) => {
 
 const pathname = new URL(Astro.request.url).pathname;
 const page = pathname.substring(1);
-const { title } = Astro.props;
+
+const { rssUrl } = Astro.props;
 ---
 
 <div class={`py-4 mt-12 animate-blur-in`}>
   <h1
-    class={`text-6xl text-transparent bg-clip-text safari-gradient-text bg-gradient-to-br ${gradient(
+    class={`relative text-6xl text-transparent bg-clip-text safari-gradient-text bg-gradient-to-br ${gradient(
       page
     )} `}
   >
-    {title}
+    <slot />
+    {
+      rssUrl && (
+        <a href={rssUrl} title="RSS Feed">
+          <Rss
+            aria-labeled-by="rss-feed"
+            class="w-6 h-6 inline-block text-white dark:text-amber-300 absolute top-0 ml-2 from-orange-400 to-amber-400 rounded-md"
+          />
+          <span id="rss-feed" class="sr-only">
+            RSS feed for Atila's {page}
+          </span>
+        </a>
+      )
+    }
   </h1>
 </div>
