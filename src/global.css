@@ -33,7 +33,7 @@
 
   .bg-dotted {
     --bg-color: theme(colors.zinc.100);
-    --dot-color: theme(colors.zinc.400);
+    --dot-color: theme(colors.zinc.900);
     background: linear-gradient(90deg, var(--bg-color) 21px, transparent 1%)
         center,
       linear-gradient(var(--bg-color) 21px, transparent 1%) center,
